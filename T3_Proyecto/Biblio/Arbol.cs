@@ -8,55 +8,38 @@ namespace Biblio
 {
     public class Arbol
     {
-        public Nodo_Medico Raiz;
+        public Nodo_Medico raiz_principal = null;
 
-        public void Insertar(int id, string nombre, string area)
-        {
-            Raiz = insertar(Raiz, id, nombre, area);
-        }
-
-        private Nodo_Medico insertar(Nodo_Medico raiz, int id, string nombre, string area)
+        private void insertar(ref Nodo_Medico raiz, Medico d)
         {
             if (raiz == null)
-                return new Nodo_Medico(id, nombre, area);
-
-            if (id < raiz.Id)
-                raiz.Izquierdo = insertar(raiz.Izquierdo, id, nombre, area);
-            else if (id > raiz.Id)
-                raiz.Derecho = insertar(raiz.Derecho, id, nombre, area);
-
-            return raiz;
-        }
-
-        public Nodo_Medico Buscar(int id)
-        {
-            return buscar(Raiz, id);
-        }
-
-        private Nodo_Medico buscar(Nodo_Medico raiz, int id)
-        {
-            if (raiz == null || raiz.Id == id)
-                return raiz;
-            if (id < raiz.Id)
-                return buscar(raiz.Izquierdo, id);
-            else
-                return buscar(raiz.Derecho, id);
-        }
-        public string ObtenerMedicosComoTexto()
-        {
-            string resultado = "";
-            RecorrerInOrden(Raiz, ref resultado);
-            return resultado;
-        }
-
-        private void RecorrerInOrden(Nodo_Medico nodo, ref string texto)
-        {
-            if (nodo != null)
             {
-                RecorrerInOrden(nodo.Izquierdo, ref texto);
-                texto += nodo.ToString() + "\n";
-                RecorrerInOrden(nodo.Derecho, ref texto);
+                Nodo_Medico nuevo = new Nodo_Medico();
+                nuevo.dato = d;
+
+                raiz = nuevo;
             }
+            else
+            {
+                if (d.Id < raiz.dato.Id)
+                {
+                    insertar(ref raiz.Izquierdo, d);
+                }
+                else if (d.Id > raiz.dato.Id)
+                {
+                    insertar(ref raiz.Derecho, d);
+                }
+                else
+                {
+                    Console.WriteLine("DATO DUPLICADO");
+                }
+            }
+        }
+
+        //disfraz
+        public void insertar(Medico d)
+        {
+            insertar(ref raiz_principal, d);
         }
     }
 }

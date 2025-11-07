@@ -8,13 +8,7 @@ namespace Biblio
 {
     public class Nodo_Medicamento
     {
-        public string Nombre;
+        public Medicamento dato;
         public Nodo_Medicamento Siguiente;
-
-        public Nodo_Medicamento(string nombre)
-        {
-            Nombre = nombre;
-            Siguiente = null;
-        }
     }
 }

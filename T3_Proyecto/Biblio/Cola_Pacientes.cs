@@ -8,53 +8,62 @@ namespace Biblio
 {
     public class Cola_Pacientes
     {
-        private Nodo_Paciente frente;
-        private Nodo_Paciente final;
+        public Nodo_Paciente frente = null;
+        public Nodo_Paciente final = null;
 
-        public Cola_Pacientes()
+        public void Encolar(Paciente p)
         {
-            frente = final = null;
-        }
+            //1. Crear nuevo Nodo
+            Nodo_Paciente nuevo = new Nodo_Paciente();
+            nuevo.dato = p;
 
-        public void Encolar(string nombre)
-        {
-            Nodo_Paciente nuevo = new Nodo_Paciente(nombre);
-            if (final == null)
-                frente = final = nuevo;
-            else
+            //2. encolar
+            if (frente == null)
             {
-                final.Siguiente = nuevo;
+                frente = nuevo;
                 final = nuevo;
             }
-        }
-
-        public string Desencolar()
-        {
-            if (frente == null)
-                return null;
-
-            string nombre = frente.Nombre;
-            frente = frente.Siguiente;
-            if (frente == null)
-                final = null;
-            return nombre;
-        }
-
-        public bool EstaVacia()
-        {
-            return frente == null;
-        }
-
-        public string MostrarCola()
-        {
-            string texto = "";
-            Nodo_Paciente temp = frente;
-            while (temp != null)
+            else
             {
-                texto += temp.Nombre + " -> ";
-                temp = temp.Siguiente;
+                if (p.Prioridad == 0)
+                {
+                    final.Siguiente = nuevo;
+                    final = nuevo;
+                }
+                else
+                {
+                    if (frente.dato.Prioridad == 0)
+                    {
+                        nuevo.Siguiente = frente;
+                        frente = nuevo;
+                    }
+                    else
+                    {
+                        Nodo_Paciente temp = frente;
+                        while (temp != null && temp.Siguiente.dato.Prioridad == 1)
+                        {
+                            temp = temp.Siguiente;
+                        }
+                        nuevo.Siguiente = temp.Siguiente;
+                        temp.Siguiente = nuevo;
+
+                    }
+                }
             }
-            return texto == "" ? "Sin pacientes" : texto + "FIN";
+
+        }
+
+        public Paciente Desencolar()
+        {
+            if (frente != null)
+            {
+                Paciente p = frente.dato;
+
+                frente = frente.Siguiente;
+
+                return p;
+            }
+            return null;
         }
     }
 }
