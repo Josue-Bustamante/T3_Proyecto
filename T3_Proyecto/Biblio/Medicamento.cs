@@ -9,5 +9,7 @@ namespace Biblio
     public class Medicamento
     {
         public string Nombre;
+        public string Especialidad;
+        public int Stock;
     }
 }

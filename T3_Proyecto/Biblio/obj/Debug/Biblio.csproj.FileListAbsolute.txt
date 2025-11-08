@@ -1,0 +1,6 @@
+D:\2025-2\Estructura de datos\T3_Proyecto\T3_Proyecto\T3_Proyecto\Biblio\obj\Debug\Biblio.csproj.AssemblyReference.cache
+D:\2025-2\Estructura de datos\T3_Proyecto\T3_Proyecto\T3_Proyecto\Biblio\obj\Debug\Biblio.csproj.CoreCompileInputs.cache
+D:\2025-2\Estructura de datos\T3_Proyecto\T3_Proyecto\T3_Proyecto\Biblio\bin\Debug\Biblio.dll
+D:\2025-2\Estructura de datos\T3_Proyecto\T3_Proyecto\T3_Proyecto\Biblio\bin\Debug\Biblio.pdb
+D:\2025-2\Estructura de datos\T3_Proyecto\T3_Proyecto\T3_Proyecto\Biblio\obj\Debug\Biblio.dll
+D:\2025-2\Estructura de datos\T3_Proyecto\T3_Proyecto\T3_Proyecto\Biblio\obj\Debug\Biblio.pdb

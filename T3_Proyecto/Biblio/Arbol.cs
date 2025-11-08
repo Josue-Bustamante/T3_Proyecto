@@ -35,11 +35,26 @@ namespace Biblio
                 }
             }
         }
-
-        //disfraz
-        public void insertar(Medico d)
+        public void Insertar(Medico d)
         {
             insertar(ref raiz_principal, d);
+        }
+        public Medico Buscar_Area(string area)
+        {
+            return buscar_Area(raiz_principal, area);
+        }
+
+        private Medico buscar_Area(Nodo_Medico raiz, string area)
+        {
+            if (raiz == null) return null;
+
+            if (raiz.dato.Area == area)
+                return raiz.dato;
+
+            Medico encontrado = buscar_Area(raiz.Izquierdo, area);
+            if (encontrado != null) return encontrado;
+
+            return buscar_Area(raiz.Derecho, area);
         }
     }
 }

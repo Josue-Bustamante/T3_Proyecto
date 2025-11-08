@@ -12,10 +12,14 @@ namespace Biblio
 
         public Lista_Medicamento()
         {
-            Insertar(new Medicamento { Nombre = "Paracetamol" });
-            Insertar(new Medicamento { Nombre = "Ibuprofeno" });
-            Insertar(new Medicamento { Nombre = "Amoxicilina" });
-            Insertar(new Medicamento { Nombre = "Loratadina" });
+            Insertar(new Medicamento { Nombre = "Paracetamol", Especialidad = "Medicina General", Stock = 5 });
+            Insertar(new Medicamento { Nombre = "Ibuprofeno", Especialidad = "Ginecologia", Stock = 5 });
+            Insertar(new Medicamento { Nombre = "Amoxicilina", Especialidad = "Traumatologia", Stock = 5 });
+            Insertar(new Medicamento { Nombre = "Loratadina", Especialidad = "Neumologia", Stock = 5 });
+            Insertar(new Medicamento { Nombre = "Aspirina", Especialidad = "Cardiologia", Stock = 5 });
+            Insertar(new Medicamento { Nombre = "Jarabe Infantil", Especialidad = "Pediatria", Stock = 5 });
+            Insertar(new Medicamento { Nombre = "Crema Antialérgica", Especialidad = "Dermatologia", Stock = 5 });
+            Insertar(new Medicamento { Nombre = "Omeprazol", Especialidad = "Gastroenterologia", Stock = 5 });
         }
 
         public void Insertar(Medicamento v)
@@ -37,40 +41,66 @@ namespace Biblio
                 temp.Siguiente = nuevo;
             }
         }
-
-        public void Mostrar()
+        public Medicamento BuscarPorArea(string area)
         {
             Nodo_Medicamento temp = primero;
             while (temp != null)
             {
-                Console.WriteLine("->" + temp.dato);
+                if (temp.dato.Especialidad == area)
+                    return temp.dato;
+
                 temp = temp.Siguiente;
             }
+            return null;
         }
 
-        public void Eliminar(string v)
-        {
-            Nodo_Medicamento temp = primero;
-            Nodo_Medicamento ant = null;
-            while (temp != null)
-            {
-                if (temp.dato.Nombre == v)
-                {
-                    if (temp == primero)
-                    {
-                        primero = primero.Siguiente;
-                    }
-                    else
-                    {
-                        ant.Siguiente = temp.Siguiente;
-                    }
-                    return;
-                }
-                ant = temp;
-                temp = temp.Siguiente;
-            }
-            Console.WriteLine("Elemento no encontrado");
-        }
+        //<<<<<<< HEAD
+
+        //        public void Mostrar()
+        //=======
+        //        public Medicamento BuscarPorArea(string area)
+        //>>>>>>> rama1
+        //        {
+        //            Nodo_Medicamento temp = primero;
+        //            while (temp != null)
+        //            {
+        //<<<<<<< HEAD
+        //                Console.WriteLine("->" + temp.dato);
+        //                temp = temp.Siguiente;
+        //            }
+        //        }
+
+        //        public void Eliminar(string v)
+        //        {
+        //            Nodo_Medicamento temp = primero;
+        //            Nodo_Medicamento ant = null;
+        //            while (temp != null)
+        //            {
+        //                if (temp.dato.Nombre == v)
+        //                {
+        //                    if (temp == primero)
+        //                    {
+        //                        primero = primero.Siguiente;
+        //                    }
+        //                    else
+        //                    {
+        //                        ant.Siguiente = temp.Siguiente;
+        //                    }
+        //                    return;
+        //                }
+        //                ant = temp;
+        //                temp = temp.Siguiente;
+        //            }
+        //            Console.WriteLine("Elemento no encontrado");
+        //=======
+        //                if (temp.dato.Especialidad == area)
+        //                    return temp.dato;
+
+        //                temp = temp.Siguiente;
+        //            }
+        //            return null;
+        //>>>>>>> rama1
+        //}
     }
 }
 
