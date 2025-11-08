@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Biblio
 {
-    public class Nodo_Medico
+    public class Medicamento
     {
-        public Medico dato;
-        public Nodo_Medico Izquierdo;
-        public Nodo_Medico Derecho;
+        public string Nombre;
+        public string Especialidad;
+        public int Stock;
     }
 }

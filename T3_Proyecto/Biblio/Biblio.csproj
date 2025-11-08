@@ -44,9 +44,12 @@
     <Compile Include="Arbol.cs" />
     <Compile Include="Cola_Pacientes.cs" />
     <Compile Include="Lista_Medicamento.cs" />
+    <Compile Include="Medicamento.cs" />
+    <Compile Include="Medico.cs" />
     <Compile Include="Nodo_Medicamento.cs" />
     <Compile Include="Nodo_Medico.cs" />
     <Compile Include="Nodo_Paciente.cs" />
+    <Compile Include="Paciente.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
