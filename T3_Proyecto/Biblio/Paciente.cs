@@ -8,7 +8,10 @@ namespace Biblio
 {
     public class Paciente
     {
+        public string DNI;
         public string Nombre;
+        public string ApellidoPaterno;
+        public string ApellidoMaterno;
         public int Prioridad;
     }
 }

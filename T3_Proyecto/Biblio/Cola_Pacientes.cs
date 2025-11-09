@@ -13,11 +13,9 @@ namespace Biblio
 
         public void Encolar(Paciente p)
         {
-            //1. Crear nuevo Nodo
             Nodo_Paciente nuevo = new Nodo_Paciente();
             nuevo.dato = p;
 
-            //2. encolar
             if (frente == null)
             {
                 frente = nuevo;

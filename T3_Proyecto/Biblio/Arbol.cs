@@ -39,11 +39,6 @@ namespace Biblio
         {
             insertar(ref raiz_principal, d);
         }
-        public Medico Buscar_Area(string area)
-        {
-            return buscar_Area(raiz_principal, area);
-        }
-
         private Medico buscar_Area(Nodo_Medico raiz, string area)
         {
             if (raiz == null) return null;
@@ -55,6 +50,10 @@ namespace Biblio
             if (encontrado != null) return encontrado;
 
             return buscar_Area(raiz.Derecho, area);
+        }
+        public Medico Buscar_Area(string area)
+        {
+            return buscar_Area(raiz_principal, area);
         }
     }
 }

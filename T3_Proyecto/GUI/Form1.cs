@@ -8,14 +8,21 @@ namespace GUI
     public partial class Form1 : Form
     {
         Arbol arbolMedicos = new Arbol();
-        Nodo_Area listaAreas; // ← lista enlazada de áreas médicas
-        Lista_Medicamento listaMedicamentos = new Lista_Medicamento();
+        Nodo_Area listaAreas;
+        Nodo_Historial historialAtenciones = null;
 
         public Form1()
         {
             InitializeComponent();
             InicializarAreas();
             Medicos_Defecto();
+            lv_Historial.View = View.Details;
+            lv_Historial.FullRowSelect = true;
+            lv_Historial.GridLines = true;
+            lv_Historial.Columns.Add("Paciente", 180);
+            lv_Historial.Columns.Add("DNI", 100);
+            lv_Historial.Columns.Add("Médico", 180);
+            lv_Historial.Columns.Add("Área", 150);
         }
         public class Nodo_Area
         {
@@ -28,13 +35,14 @@ namespace GUI
                 Siguiente = null;
             }
         }
-
-        // Crea la lista enlazada de áreas
         private void InicializarAreas()
         {
+            cb_Especialidad.Items.Clear();
+            cb_Area.Items.Clear();
+            cb_Area_Desencolar.Items.Clear();
+
             listaAreas = new Nodo_Area("Medicina General");
             Nodo_Area actual = listaAreas;
-
             actual.Siguiente = new Nodo_Area("Ginecologia"); actual = actual.Siguiente;
             actual.Siguiente = new Nodo_Area("Traumatologia"); actual = actual.Siguiente;
             actual.Siguiente = new Nodo_Area("Neumologia"); actual = actual.Siguiente;
@@ -42,8 +50,6 @@ namespace GUI
             actual.Siguiente = new Nodo_Area("Pediatria"); actual = actual.Siguiente;
             actual.Siguiente = new Nodo_Area("Dermatologia"); actual = actual.Siguiente;
             actual.Siguiente = new Nodo_Area("Gastroenterologia");
-
-            // Cargar los ComboBox sin usar arreglos
             Nodo_Area temp = listaAreas;
             while (temp != null)
             {
@@ -63,34 +69,58 @@ namespace GUI
                 Medico nuevo = new Medico();
                 nuevo.Id = id;
 
-                // Asignar nombres reales aleatorios
                 switch (temp.Nombre)
                 {
                     case "Medicina General":
-                        nuevo.Nombre = "Dr. Luis Herrera";
+                        nuevo.Nombre = "Luis";
+                        nuevo.ApellidoPaterno = "Herrera";
+                        nuevo.ApellidoMaterno = "Campos";
+                        nuevo.DNI = "12345678";
                         break;
                     case "Ginecologia":
-                        nuevo.Nombre = "Dra. María Rojas";
+                        nuevo.Nombre = "María";
+                        nuevo.ApellidoPaterno = "Rojas";
+                        nuevo.ApellidoMaterno = "Flores";
+                        nuevo.DNI = "23456789";
                         break;
                     case "Traumatologia":
-                        nuevo.Nombre = "Dr. José Ramírez";
+                        nuevo.Nombre = "José";
+                        nuevo.ApellidoPaterno = "Ramírez";
+                        nuevo.ApellidoMaterno = "Torres";
+                        nuevo.DNI = "34567890";
                         break;
                     case "Neumologia":
-                        nuevo.Nombre = "Dr. Ricardo Fernández";
+                        nuevo.Nombre = "Ricardo";
+                        nuevo.ApellidoPaterno = "Fernández";
+                        nuevo.ApellidoMaterno = "Cruz";
+                        nuevo.DNI = "45678901";
                         break;
                     case "Cardiologia":
-                        nuevo.Nombre = "Dr. Pedro Salazar";
+                        nuevo.Nombre = "Pedro";
+                        nuevo.ApellidoPaterno = "Salazar";
+                        nuevo.ApellidoMaterno = "Mendoza";
+                        nuevo.DNI = "56789012";
                         break;
                     case "Pediatria":
-                        nuevo.Nombre = "Dra. Ana Morales";
+                        nuevo.Nombre = "Ana";
+                        nuevo.ApellidoPaterno = "Morales";
+                        nuevo.ApellidoMaterno = "Gómez";
+                        nuevo.DNI = "67890123";
                         break;
                     case "Dermatologia":
-                        nuevo.Nombre = "Dr. Javier Quiroz";
+                        nuevo.Nombre = "Javier";
+                        nuevo.ApellidoPaterno = "Quiroz";
+                        nuevo.ApellidoMaterno = "Soto";
+                        nuevo.DNI = "78901234";
                         break;
                     case "Gastroenterologia":
-                        nuevo.Nombre = "Dra. Carla Sánchez";
+                        nuevo.Nombre = "Carla";
+                        nuevo.ApellidoPaterno = "Sánchez";
+                        nuevo.ApellidoMaterno = "Vargas";
+                        nuevo.DNI = "89012345";
                         break;
                 }
+
                 nuevo.Area = temp.Nombre;
                 nuevo.Pacientes = new Cola_Pacientes();
                 arbolMedicos.Insertar(nuevo);
@@ -100,12 +130,14 @@ namespace GUI
 
             MessageBox.Show("Se registraron médicos por defecto para todas las áreas.", "Inicio del sistema");
         }
-
         private void btn_Registrar_Medico_Click(object sender, EventArgs e)
         {
             Medico nuevo = new Medico();
             nuevo.Id = int.Parse(txt_ID.Text);
+            nuevo.DNI = txt_DNI.Text;
             nuevo.Nombre = txt_Nombre.Text;
+            nuevo.ApellidoPaterno = txt_Paterno.Text;
+            nuevo.ApellidoMaterno = txt_Materno.Text;
             nuevo.Area = cb_Especialidad.Text;
             nuevo.Pacientes = new Cola_Pacientes();
 
@@ -114,7 +146,10 @@ namespace GUI
             MessageBox.Show("Médico registrado correctamente.", "Registro Médico");
 
             txt_ID.Text = "";
+            txt_DNI.Text = "";
             txt_Nombre.Text = "";
+            txt_Paterno.Text = "";
+            txt_Materno.Text = "";
             cb_Especialidad.SelectedIndex = -1;
         }
 
@@ -126,14 +161,20 @@ namespace GUI
             if (medico != null)
             {
                 Paciente p = new Paciente();
+                p.DNI = txt_DNIPaciente.Text;
                 p.Nombre = txt_NPaciente.Text;
+                p.ApellidoPaterno = txt_PaternoPaciente.Text;
+                p.ApellidoMaterno = txt_MaternoPaciente.Text;
                 p.Prioridad = checkB_Prioridad.Checked ? 1 : 0;
 
                 medico.Pacientes.Encolar(p);
 
                 MessageBox.Show("Paciente registrado correctamente.", "Registro Paciente");
 
+                txt_DNIPaciente.Text = "";
                 txt_NPaciente.Text = "";
+                txt_PaternoPaciente.Text = "";
+                txt_MaternoPaciente.Text = "";
                 cb_Area.SelectedIndex = -1;
                 checkB_Prioridad.Checked = false;
 
@@ -148,37 +189,23 @@ namespace GUI
         {
             string area = cb_Area_Desencolar.Text;
             Medico medico = arbolMedicos.Buscar_Area(area);
+
             if (medico != null)
             {
                 Paciente atendido = medico.Pacientes.Desencolar();
                 if (atendido != null)
                 {
-                    Medicamento med = listaMedicamentos.BuscarPorArea(medico.Area);
-                    if (med != null)
-                    {
-                        if (med.Stock > 0)
-                        {
-                            med.Stock--;
-                            MessageBox.Show(
-                                "Atendiendo a: " + atendido.Nombre +
-                                "\nMédico: " + medico.Nombre +
-                                "\nÁrea: " + medico.Area +
-                                "\nMedicamento asignado: " + med.Nombre +
-                                "\nStock restante: " + med.Stock,
-                                "Atención"
-                            );
-                        }
-                        else
-                        {
-                            MessageBox.Show(
-                                "Atendiendo a: " + atendido.Nombre +
-                                "\nMédico: " + medico.Nombre +
-                                "\nÁrea: " + medico.Area +
-                                "\n⚠ No queda stock de " + med.Nombre + ".",
-                                "Atención"
-                            );
-                        }
-                    }
+                    MessageBox.Show("Paciente:\n" +
+                                    atendido.Nombre + " " + atendido.ApellidoPaterno + " " + atendido.ApellidoMaterno +
+                                    "\nDNI: " + atendido.DNI +
+                                    "\n\nPasar para atención con el doctor:\n" +
+                                    "Dr. " + medico.Nombre + " " + medico.ApellidoPaterno + " " + medico.ApellidoMaterno +
+                                    "\n\nEn el área de:\n" +
+                                    medico.Area,
+                                    "Atención");
+
+                    AgregarHistorial(atendido, medico);
+                    ActualizarHistorial();
                     ActualizarTabla();
                 }
                 else
@@ -191,32 +218,21 @@ namespace GUI
                 MessageBox.Show("No existe un médico en el área seleccionada.", "Aviso");
             }
         }
-        // -----------------------------------------
-        // ACTUALIZAR TABLA SIN USAR ARREGLOS
-        // -----------------------------------------
         private void ActualizarTabla()
         {
             dgv_Vista.Rows.Clear();
             dgv_Vista.Columns.Clear();
-
-            // Crear columnas dinámicamente desde la lista enlazada
             Nodo_Area temp = listaAreas;
             while (temp != null)
             {
                 dgv_Vista.Columns.Add(temp.Nombre, temp.Nombre);
                 temp = temp.Siguiente;
             }
-
-            // Obtener cantidad máxima de pacientes en alguna cola
             int maxPacientes = ObtenerMaxPacientes(arbolMedicos.raiz_principal);
-
-            // Crear filas según el número máximo de pacientes
             for (int i = 0; i < maxPacientes; i++)
             {
                 int index = dgv_Vista.Rows.Add();
                 DataGridViewRow fila = dgv_Vista.Rows[index];
-
-                // Llenar la fila con los pacientes de esa posición
                 LlenarFilaPorArea(arbolMedicos.raiz_principal, fila, i);
             }
         }
@@ -234,7 +250,6 @@ namespace GUI
 
             return mayor;
         }
-
         private int ContarPacientes(Nodo_Paciente nodo)
         {
             int count = 0;
@@ -245,12 +260,10 @@ namespace GUI
             }
             return count;
         }
-
         private void LlenarFilaPorArea(Nodo_Medico raiz, DataGridViewRow fila, int posicion)
         {
             if (raiz == null) return;
 
-            // Buscar la columna que coincide con el área del médico
             foreach (DataGridViewColumn col in dgv_Vista.Columns)
             {
                 if (col.HeaderText == raiz.dato.Area)
@@ -281,5 +294,45 @@ namespace GUI
             }
             return null;
         }
+        private void AgregarHistorial(Paciente p, Medico m)
+        {
+            Nodo_Historial nuevo = new Nodo_Historial();
+            nuevo.PacienteNombre = p.Nombre + " " + p.ApellidoPaterno + " " + p.ApellidoMaterno;
+            nuevo.PacienteDNI = p.DNI;
+            nuevo.MedicoNombre = m.Nombre + " " + m.ApellidoPaterno + " " + m.ApellidoMaterno;
+            nuevo.MedicoArea = m.Area;
+
+            if (historialAtenciones == null)
+            {
+                historialAtenciones = nuevo;
+            }
+            else
+            {
+                Nodo_Historial temp = historialAtenciones;
+                while (temp.Siguiente != null)
+                {
+                    temp = temp.Siguiente;
+                }
+                temp.Siguiente = nuevo;
+            }
+        }
+
+        private void ActualizarHistorial()
+        {
+            lv_Historial.Items.Clear();
+
+            Nodo_Historial temp = historialAtenciones;
+            while (temp != null)
+            {
+                ListViewItem item = new ListViewItem(temp.PacienteNombre);
+                item.SubItems.Add(temp.PacienteDNI);
+                item.SubItems.Add(temp.MedicoNombre);
+                item.SubItems.Add(temp.MedicoArea);
+                lv_Historial.Items.Add(item);
+
+                temp = temp.Siguiente;
+            }
+        }
+
     }
 }
