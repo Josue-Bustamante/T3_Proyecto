@@ -70,6 +70,7 @@
             this.Gastroenterologia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.lv_Historial = new System.Windows.Forms.ListView();
+            this.label12 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -376,6 +377,7 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.label12);
             this.panel3.Controls.Add(this.btn_Atender);
             this.panel3.Controls.Add(this.cb_Area_Desencolar);
             this.panel3.Controls.Add(this.dgv_Vista);
@@ -389,7 +391,7 @@
             // 
             // btn_Atender
             // 
-            this.btn_Atender.Location = new System.Drawing.Point(833, 201);
+            this.btn_Atender.Location = new System.Drawing.Point(834, 244);
             this.btn_Atender.Margin = new System.Windows.Forms.Padding(2);
             this.btn_Atender.Name = "btn_Atender";
             this.btn_Atender.Size = new System.Drawing.Size(91, 71);
@@ -410,10 +412,10 @@
             "Pediatria",
             "Dermatologia",
             "Gastroenterología"});
-            this.cb_Area_Desencolar.Location = new System.Drawing.Point(833, 11);
+            this.cb_Area_Desencolar.Location = new System.Drawing.Point(808, 71);
             this.cb_Area_Desencolar.Margin = new System.Windows.Forms.Padding(2);
             this.cb_Area_Desencolar.Name = "cb_Area_Desencolar";
-            this.cb_Area_Desencolar.Size = new System.Drawing.Size(92, 21);
+            this.cb_Area_Desencolar.Size = new System.Drawing.Size(134, 21);
             this.cb_Area_Desencolar.TabIndex = 12;
             // 
             // dgv_Vista
@@ -499,7 +501,7 @@
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage3.Size = new System.Drawing.Size(956, 416);
             this.tabPage3.TabIndex = 3;
-            this.tabPage3.Text = "tabPage3";
+            this.tabPage3.Text = "Historial";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // lv_Historial
@@ -511,6 +513,15 @@
             this.lv_Historial.TabIndex = 0;
             this.lv_Historial.UseCompatibleStateImageBehavior = false;
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(805, 25);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(148, 26);
+            this.label12.TabIndex = 14;
+            this.label12.Text = "De que area será el siguiente \r\npaciente en pasar?";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -518,13 +529,14 @@
             this.ClientSize = new System.Drawing.Size(969, 454);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Sistema de gestión de citas medicas";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Vista)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -575,6 +587,7 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.ListView lv_Historial;
+        private System.Windows.Forms.Label label12;
     }
 }
 
