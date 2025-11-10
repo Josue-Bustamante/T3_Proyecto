@@ -15,7 +15,8 @@ namespace GUI
         {
             InitializeComponent();
             InicializarAreas();
-            Medicos_Defecto();
+            //Medicos_Defecto();
+            ActualizarListaMedicos();
             lv_Historial.View = View.Details;
             lv_Historial.FullRowSelect = true;
             lv_Historial.GridLines = true;
@@ -59,77 +60,75 @@ namespace GUI
                 temp = temp.Siguiente;
             }
         }
-        private void Medicos_Defecto()
-        {
-            Nodo_Area temp = listaAreas;
-            int id = 1;
+        //private void Medicos_Defecto()
+        //{
+        //    Nodo_Area temp = listaAreas;
+        //    int id = 1;
 
-            while (temp != null)
-            {
-                Medico nuevo = new Medico();
-                nuevo.Id = id;
+        //    while (temp != null)
+        //    {
+        //        Medico nuevo = new Medico();
+        //        nuevo.Id = id;
 
-                switch (temp.Nombre)
-                {
-                    case "Medicina General":
-                        nuevo.Nombre = "Luis";
-                        nuevo.ApellidoPaterno = "Herrera";
-                        nuevo.ApellidoMaterno = "Campos";
-                        nuevo.DNI = "12345678";
-                        break;
-                    case "Ginecologia":
-                        nuevo.Nombre = "María";
-                        nuevo.ApellidoPaterno = "Rojas";
-                        nuevo.ApellidoMaterno = "Flores";
-                        nuevo.DNI = "23456789";
-                        break;
-                    case "Traumatologia":
-                        nuevo.Nombre = "José";
-                        nuevo.ApellidoPaterno = "Ramírez";
-                        nuevo.ApellidoMaterno = "Torres";
-                        nuevo.DNI = "34567890";
-                        break;
-                    case "Neumologia":
-                        nuevo.Nombre = "Ricardo";
-                        nuevo.ApellidoPaterno = "Fernández";
-                        nuevo.ApellidoMaterno = "Cruz";
-                        nuevo.DNI = "45678901";
-                        break;
-                    case "Cardiologia":
-                        nuevo.Nombre = "Pedro";
-                        nuevo.ApellidoPaterno = "Salazar";
-                        nuevo.ApellidoMaterno = "Mendoza";
-                        nuevo.DNI = "56789012";
-                        break;
-                    case "Pediatria":
-                        nuevo.Nombre = "Ana";
-                        nuevo.ApellidoPaterno = "Morales";
-                        nuevo.ApellidoMaterno = "Gómez";
-                        nuevo.DNI = "67890123";
-                        break;
-                    case "Dermatologia":
-                        nuevo.Nombre = "Javier";
-                        nuevo.ApellidoPaterno = "Quiroz";
-                        nuevo.ApellidoMaterno = "Soto";
-                        nuevo.DNI = "78901234";
-                        break;
-                    case "Gastroenterologia":
-                        nuevo.Nombre = "Carla";
-                        nuevo.ApellidoPaterno = "Sánchez";
-                        nuevo.ApellidoMaterno = "Vargas";
-                        nuevo.DNI = "89012345";
-                        break;
-                }
+        //        switch (temp.Nombre)
+        //        {
+        //            case "Medicina General":
+        //                nuevo.Nombre = "Luis";
+        //                nuevo.ApellidoPaterno = "Herrera";
+        //                nuevo.ApellidoMaterno = "Campos";
+        //                nuevo.DNI = "12345678";
+        //                break;
+        //            case "Ginecologia":
+        //                nuevo.Nombre = "María";
+        //                nuevo.ApellidoPaterno = "Rojas";
+        //                nuevo.ApellidoMaterno = "Flores";
+        //                nuevo.DNI = "23456789";
+        //                break;
+        //            case "Traumatologia":
+        //                nuevo.Nombre = "José";
+        //                nuevo.ApellidoPaterno = "Ramírez";
+        //                nuevo.ApellidoMaterno = "Torres";
+        //                nuevo.DNI = "34567890";
+        //                break;
+        //            case "Neumologia":
+        //                nuevo.Nombre = "Ricardo";
+        //                nuevo.ApellidoPaterno = "Fernández";
+        //                nuevo.ApellidoMaterno = "Cruz";
+        //                nuevo.DNI = "45678901";
+        //                break;
+        //            case "Cardiologia":
+        //                nuevo.Nombre = "Pedro";
+        //                nuevo.ApellidoPaterno = "Salazar";
+        //                nuevo.ApellidoMaterno = "Mendoza";
+        //                nuevo.DNI = "56789012";
+        //                break;
+        //            case "Pediatria":
+        //                nuevo.Nombre = "Ana";
+        //                nuevo.ApellidoPaterno = "Morales";
+        //                nuevo.ApellidoMaterno = "Gómez";
+        //                nuevo.DNI = "67890123";
+        //                break;
+        //            case "Dermatologia":
+        //                nuevo.Nombre = "Javier";
+        //                nuevo.ApellidoPaterno = "Quiroz";
+        //                nuevo.ApellidoMaterno = "Soto";
+        //                nuevo.DNI = "78901234";
+        //                break;
+        //            case "Gastroenterologia":
+        //                nuevo.Nombre = "Carla";
+        //                nuevo.ApellidoPaterno = "Sánchez";
+        //                nuevo.ApellidoMaterno = "Vargas";
+        //                nuevo.DNI = "89012345";
+        //                break;
+        //        }
 
-                nuevo.Area = temp.Nombre;
-                nuevo.Pacientes = new Cola_Pacientes();
-                arbolMedicos.Insertar(nuevo);
-                id++;
-                temp = temp.Siguiente;
-            }
-
-            MessageBox.Show("Se registraron médicos por defecto para todas las áreas.", "Inicio del sistema");
-        }
+        //        nuevo.Area = temp.Nombre;
+        //        nuevo.Pacientes = new Cola_Pacientes();
+        //        arbolMedicos.Insertar(nuevo);
+        //        id++;
+        //        temp = temp.Siguiente;
+        //    }
+        //}
         private void btn_Registrar_Medico_Click(object sender, EventArgs e)
         {
             Medico nuevo = new Medico();
@@ -151,6 +150,7 @@ namespace GUI
             txt_Paterno.Text = "";
             txt_Materno.Text = "";
             cb_Especialidad.SelectedIndex = -1;
+            ActualizarListaMedicos();
         }
 
         private void btn_Registrar_Paciente_Click(object sender, EventArgs e)
@@ -329,10 +329,34 @@ namespace GUI
                 item.SubItems.Add(temp.MedicoNombre);
                 item.SubItems.Add(temp.MedicoArea);
                 lv_Historial.Items.Add(item);
-
                 temp = temp.Siguiente;
             }
         }
+        private void ActualizarListaMedicos()
+        {
+            lv_MedicosRegistrados.Items.Clear();
 
+            if (lv_MedicosRegistrados.Columns.Count == 0)
+            {
+                lv_MedicosRegistrados.View = View.Details;
+                lv_MedicosRegistrados.FullRowSelect = true;
+                lv_MedicosRegistrados.GridLines = true;
+
+                lv_MedicosRegistrados.Columns.Add("Datos del Médico", 300);
+                lv_MedicosRegistrados.Columns.Add("Especialidad", 200);
+            }
+            MostrarMedicosEnLista(arbolMedicos.raiz_principal);
+        }
+        private void MostrarMedicosEnLista(Nodo_Medico nodo)
+        {
+            if (nodo == null) return;
+            Medico m = nodo.dato;
+            string datosMedico = $"ID: {m.Id} | DNI: {m.DNI} | {m.Nombre} {m.ApellidoPaterno} {m.ApellidoMaterno}";
+            ListViewItem item = new ListViewItem(datosMedico);
+            item.SubItems.Add(m.Area);
+            lv_MedicosRegistrados.Items.Add(item);
+            MostrarMedicosEnLista(nodo.Izquierdo);
+            MostrarMedicosEnLista(nodo.Derecho);
+        }
     }
 }

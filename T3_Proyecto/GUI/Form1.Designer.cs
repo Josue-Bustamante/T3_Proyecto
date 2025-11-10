@@ -57,6 +57,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.TabPage();
+            this.label12 = new System.Windows.Forms.Label();
             this.btn_Atender = new System.Windows.Forms.Button();
             this.cb_Area_Desencolar = new System.Windows.Forms.ComboBox();
             this.dgv_Vista = new System.Windows.Forms.DataGridView();
@@ -70,7 +71,7 @@
             this.Gastroenterologia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.lv_Historial = new System.Windows.Forms.ListView();
-            this.label12 = new System.Windows.Forms.Label();
+            this.lv_MedicosRegistrados = new System.Windows.Forms.ListView();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -88,11 +89,12 @@
             this.tabControl1.Location = new System.Drawing.Point(-1, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(964, 442);
+            this.tabControl1.Size = new System.Drawing.Size(871, 442);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.lv_MedicosRegistrados);
             this.tabPage1.Controls.Add(this.txt_Materno);
             this.tabPage1.Controls.Add(this.label8);
             this.tabPage1.Controls.Add(this.txt_Paterno);
@@ -109,7 +111,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage1.Size = new System.Drawing.Size(956, 416);
+            this.tabPage1.Size = new System.Drawing.Size(863, 416);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Registo Medicos";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -167,7 +169,7 @@
             // 
             // btn_Registrar_Medico
             // 
-            this.btn_Registrar_Medico.Location = new System.Drawing.Point(466, 206);
+            this.btn_Registrar_Medico.Location = new System.Drawing.Point(217, 218);
             this.btn_Registrar_Medico.Margin = new System.Windows.Forms.Padding(2);
             this.btn_Registrar_Medico.Name = "btn_Registrar_Medico";
             this.btn_Registrar_Medico.Size = new System.Drawing.Size(179, 118);
@@ -179,16 +181,7 @@
             // cb_Especialidad
             // 
             this.cb_Especialidad.FormattingEnabled = true;
-            this.cb_Especialidad.Items.AddRange(new object[] {
-            "Medicina General",
-            "Ginecologia",
-            "Traumatologia",
-            "Neumologia",
-            "Cardiologia",
-            "Pediatria",
-            "Dermatologia",
-            "Gastroenterología"});
-            this.cb_Especialidad.Location = new System.Drawing.Point(476, 40);
+            this.cb_Especialidad.Location = new System.Drawing.Point(217, 40);
             this.cb_Especialidad.Name = "cb_Especialidad";
             this.cb_Especialidad.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.cb_Especialidad.Size = new System.Drawing.Size(152, 21);
@@ -213,7 +206,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(473, 12);
+            this.label3.Location = new System.Drawing.Point(214, 12);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(67, 13);
             this.label3.TabIndex = 2;
@@ -335,15 +328,6 @@
             // cb_Area
             // 
             this.cb_Area.FormattingEnabled = true;
-            this.cb_Area.Items.AddRange(new object[] {
-            "Medicina General",
-            "Ginecologia",
-            "Traumatologia",
-            "Neumologia",
-            "Cardiologia",
-            "Pediatria",
-            "Dermatologia",
-            "Gastroenterología"});
             this.cb_Area.Location = new System.Drawing.Point(503, 50);
             this.cb_Area.Name = "cb_Area";
             this.cb_Area.Size = new System.Drawing.Size(121, 21);
@@ -384,14 +368,23 @@
             this.panel3.Location = new System.Drawing.Point(4, 22);
             this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(956, 416);
+            this.panel3.Size = new System.Drawing.Size(863, 416);
             this.panel3.TabIndex = 2;
             this.panel3.Text = "Atenciones";
             this.panel3.UseVisualStyleBackColor = true;
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(639, 37);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(148, 26);
+            this.label12.TabIndex = 14;
+            this.label12.Text = "De que area será el siguiente \r\npaciente en pasar?";
+            // 
             // btn_Atender
             // 
-            this.btn_Atender.Location = new System.Drawing.Point(834, 244);
+            this.btn_Atender.Location = new System.Drawing.Point(664, 262);
             this.btn_Atender.Margin = new System.Windows.Forms.Padding(2);
             this.btn_Atender.Name = "btn_Atender";
             this.btn_Atender.Size = new System.Drawing.Size(91, 71);
@@ -403,16 +396,7 @@
             // cb_Area_Desencolar
             // 
             this.cb_Area_Desencolar.FormattingEnabled = true;
-            this.cb_Area_Desencolar.Items.AddRange(new object[] {
-            "Medicina General",
-            "Ginecologia",
-            "Traumatologia",
-            "Neumologia",
-            "Cardiologia",
-            "Pediatria",
-            "Dermatologia",
-            "Gastroenterología"});
-            this.cb_Area_Desencolar.Location = new System.Drawing.Point(808, 71);
+            this.cb_Area_Desencolar.Location = new System.Drawing.Point(642, 102);
             this.cb_Area_Desencolar.Margin = new System.Windows.Forms.Padding(2);
             this.cb_Area_Desencolar.Name = "cb_Area_Desencolar";
             this.cb_Area_Desencolar.Size = new System.Drawing.Size(134, 21);
@@ -434,7 +418,7 @@
             this.dgv_Vista.Margin = new System.Windows.Forms.Padding(2);
             this.dgv_Vista.Name = "dgv_Vista";
             this.dgv_Vista.RowHeadersWidth = 51;
-            this.dgv_Vista.Size = new System.Drawing.Size(790, 393);
+            this.dgv_Vista.Size = new System.Drawing.Size(554, 393);
             this.dgv_Vista.TabIndex = 0;
             // 
             // Medicina_General
@@ -499,7 +483,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(956, 416);
+            this.tabPage3.Size = new System.Drawing.Size(863, 416);
             this.tabPage3.TabIndex = 3;
             this.tabPage3.Text = "Historial";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -507,26 +491,26 @@
             // lv_Historial
             // 
             this.lv_Historial.HideSelection = false;
-            this.lv_Historial.Location = new System.Drawing.Point(10, 7);
+            this.lv_Historial.Location = new System.Drawing.Point(9, 6);
             this.lv_Historial.Name = "lv_Historial";
-            this.lv_Historial.Size = new System.Drawing.Size(940, 403);
+            this.lv_Historial.Size = new System.Drawing.Size(847, 403);
             this.lv_Historial.TabIndex = 0;
             this.lv_Historial.UseCompatibleStateImageBehavior = false;
             // 
-            // label12
+            // lv_MedicosRegistrados
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(805, 25);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(148, 26);
-            this.label12.TabIndex = 14;
-            this.label12.Text = "De que area será el siguiente \r\npaciente en pasar?";
+            this.lv_MedicosRegistrados.HideSelection = false;
+            this.lv_MedicosRegistrados.Location = new System.Drawing.Point(449, 12);
+            this.lv_MedicosRegistrados.Name = "lv_MedicosRegistrados";
+            this.lv_MedicosRegistrados.Size = new System.Drawing.Size(408, 399);
+            this.lv_MedicosRegistrados.TabIndex = 13;
+            this.lv_MedicosRegistrados.UseCompatibleStateImageBehavior = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(969, 454);
+            this.ClientSize = new System.Drawing.Size(871, 454);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
             this.Text = "Sistema de gestión de citas medicas";
@@ -588,6 +572,7 @@
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.ListView lv_Historial;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.ListView lv_MedicosRegistrados;
     }
 }
 
